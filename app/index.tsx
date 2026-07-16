@@ -1,33 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 
-import { Logo } from '@/components/branding/Logo';
-import { EnvironmentBackdrop } from '@/components/game/EnvironmentBackdrop';
-import { useTheme } from '@/hooks/useTheme';
+import { AnimatedSplash } from '@/components/branding/AnimatedSplash';
+import { useAppState } from '@/hooks/AppState';
+import { useReducedMotionPref } from '@/hooks/useReducedMotionPref';
 
 /**
- * Entry route. In later phases this becomes the boot gate that shows the
- * animated splash and routes to onboarding or home. For now it renders the
- * branded shell so the navigation stack has a real, styled first screen
- * (no plain white flash, no dead route).
+ * Boot gate. Shows the animated splash while persisted state loads, then routes
+ * to onboarding (first run) or home (returning user). The native splash stays
+ * up until this screen's first frame, so there is no white flash anywhere.
  */
 export default function Index() {
-  const theme = useTheme();
-  return (
-    <View style={styles.fill}>
-      <EnvironmentBackdrop environmentId="concert" />
-      <SafeAreaView style={styles.center}>
-        <Logo size="lg" />
-        <Text style={[styles.tagline, { color: theme.colors.mutedBlue }]}>
-          Clear the crowd. Find the right way out.
-        </Text>
-      </SafeAreaView>
-    </View>
-  );
-}
+  const router = useRouter();
+  const { ready, onboarding } = useAppState();
+  const reducedMotion = useReducedMotionPref();
+  const [splashDone, setSplashDone] = useState(false);
 
-const styles = StyleSheet.create({
-  fill: { flex: 1 },
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 18 },
-  tagline: { fontSize: 15, fontWeight: '600', marginTop: 8 },
-});
+  const handleDone = useCallback(() => setSplashDone(true), []);
+
+  // Route once BOTH the splash animation finished AND state is ready.
+  useEffect(() => {
+    if (splashDone && ready) {
+      const target = onboarding.onboardingComplete ? '/home' : '/onboarding';
+      router.replace(target as never);
+    }
+  }, [splashDone, ready, onboarding.onboardingComplete, router]);
+
+  return <AnimatedSplash reducedMotion={reducedMotion} onDone={handleDone} />;
+}
