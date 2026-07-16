@@ -1,15 +1,16 @@
 # Project Status
 
-Current phase: **Phase 7 — Generator/solver/daily** (complete) → next Phase 2 (assets)
-Current task: Generator/solver/daily/validation committed; beginning asset pipeline
+Current phase: **Phase 2 — Asset pipeline** (complete) → next Phase 3/5 (splash/onboarding/gameplay)
+Current task: Asset pipeline committed; beginning splash + onboarding + gameplay UI
 Last stable commit: _(see commit history below)_
-Last completed validation: typecheck ✓, lint ✓, jest ✓ (57 tests),
-validate:levels ✓ (60 bundled + 2000 random boards solvable)
+Last completed validation: typecheck ✓, lint ✓, jest ✓ (62 tests),
+validate:levels ✓, assets:verify ✓ (114 assets, 50 ready / 64 placeholder)
 Blocking issues: none
-Temporary assets: icon/splash PNGs are procedural placeholders; all raster art
-is Asset Mode B — see `docs/ASSET_GENERATION_QUEUE.md`
-Next action: Implement Phase 2 — SVG icon/arrow library, character/environment
-procedural art components, generate-assets.mjs (Mode A), verify-assets script
+Temporary assets: icon/splash/store PNGs are procedural placeholders; raster
+character & environment art is Asset Mode B (native SVG/procedural at runtime)
+— queued in `docs/ASSET_GENERATION_QUEUE.md`
+Next action: Phase 3 (native + animated splash, 5 onboarding pages, persistence,
+storage modules + hooks) then Phase 5 (game board + tutorial)
 
 ---
 
@@ -19,7 +20,7 @@ procedural art components, generate-assets.mjs (Mode A), verify-assets script
 - [x] Phase 1 — Foundation
 - [x] Phase 4 — Core engine
 - [x] Phase 7 — Generator / solver / daily
-- [ ] Phase 2 — Asset pipeline
+- [x] Phase 2 — Asset pipeline
 - [ ] Phase 3 — Splash & onboarding
 - [ ] Phase 5 — First playable & tutorial
 - [ ] Phase 6 — Levels & progression

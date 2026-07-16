@@ -8,6 +8,9 @@ module.exports = {
     '.expo/',
     'coverage/',
     'assets/',
+    // Node tooling scripts run via tsx/node and are validated by execution,
+    // not by the RN-focused app lint/typecheck config.
+    'scripts/',
     'babel.config.js',
     'jest.config.js',
     'jest.setup.js',
