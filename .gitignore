@@ -9,3 +9,4 @@ coverage/
 .env
 .env.*
 
+web-demo/shot-*.png
