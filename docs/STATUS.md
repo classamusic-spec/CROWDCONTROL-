@@ -1,14 +1,15 @@
 # Project Status
 
-Current phase: **Phase 4 — Core engine** (complete) → next Phase 7 (generator/daily)
-Current task: Engine committed; beginning generator + solver + daily
+Current phase: **Phase 7 — Generator/solver/daily** (complete) → next Phase 2 (assets)
+Current task: Generator/solver/daily/validation committed; beginning asset pipeline
 Last stable commit: _(see commit history below)_
-Last completed validation: typecheck ✓, lint ✓, jest ✓ (34 tests), engine pure ✓
+Last completed validation: typecheck ✓, lint ✓, jest ✓ (57 tests),
+validate:levels ✓ (60 bundled + 2000 random boards solvable)
 Blocking issues: none
 Temporary assets: icon/splash PNGs are procedural placeholders; all raster art
 is Asset Mode B — see `docs/ASSET_GENERATION_QUEUE.md`
-Next action: Implement Phase 7 — seeded generator, DFS solver, daily seed,
-60 bundled levels, validate-levels script (>=2000 boards)
+Next action: Implement Phase 2 — SVG icon/arrow library, character/environment
+procedural art components, generate-assets.mjs (Mode A), verify-assets script
 
 ---
 
@@ -17,7 +18,7 @@ Next action: Implement Phase 7 — seeded generator, DFS solver, daily seed,
 - [x] Phase 0 — Repository & planning
 - [x] Phase 1 — Foundation
 - [x] Phase 4 — Core engine
-- [ ] Phase 7 — Generator / solver / daily
+- [x] Phase 7 — Generator / solver / daily
 - [ ] Phase 2 — Asset pipeline
 - [ ] Phase 3 — Splash & onboarding
 - [ ] Phase 5 — First playable & tutorial

@@ -127,8 +127,8 @@ describe('undoMove', () => {
 describe('restartLevel & completion', () => {
   it('restartLevel returns a fresh full board', () => {
     const level = makeLevel();
-    let s = createBoardState(level);
-    s = applyMove(s, 'b').state;
+    const played = applyMove(createBoardState(level), 'b').state;
+    expect(calculateRemainingCharacters(played)).toBe(1);
     const fresh = restartLevel(level);
     expect(calculateRemainingCharacters(fresh)).toBe(2);
     expect(fresh.moves).toBe(0);
